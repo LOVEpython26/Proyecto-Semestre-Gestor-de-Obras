@@ -1,1 +1,7 @@
-mañna tenemos que progrmar
+/target/
+/.settings/
+/.classpath
+/.project
+/bin/
+.DS_Store
+application.properties
