@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Pest {
-    private JPanel panelPrincipal;
+    public JPanel panelPrincipal;
     private JTextField texto1;
     private JTextField texto2;
     private JButton copiarBoton;
@@ -23,11 +23,4 @@ public class Pest {
         });
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Pest");
-        frame.setContentPane(new Pest().panelPrincipal);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
 }
