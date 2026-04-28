@@ -82,5 +82,27 @@ public class Logica {
         return coincide;
     }
 
+    public boolean registrarUsuario(String nombre, String correo, String pass, int idRol) {
+        // Consulta SQL para insertar en tu tabla 'usuarios'
+        String sql = "INSERT INTO usuarios (nombre, correo, contraseña, id_rol) VALUES (?, ?, ?, ?)";
+        boolean exito = false;
+
+        try (Connection con = this.conexionBD.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, nombre);
+            pst.setString(2, correo);
+            pst.setString(3, pass);
+            pst.setInt(4, idRol);
+
+            int filas = pst.executeUpdate();
+            if (filas > 0) exito = true;
+
+        } catch (SQLException e) {
+            System.err.println("Error al registrar: " + e.getMessage());
+        }
+        return exito;
+    }
+
 
 }

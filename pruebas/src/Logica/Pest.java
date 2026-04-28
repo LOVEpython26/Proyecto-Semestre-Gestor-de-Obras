@@ -60,6 +60,8 @@ public class Pest {
                     Window win = SwingUtilities.getWindowAncestor(panelPrincipal);
                     if (win != null) win.dispose();
 
+
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Acceso Denegado: Datos incorrectos ");
                 }

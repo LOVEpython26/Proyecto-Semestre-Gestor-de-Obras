@@ -79,7 +79,11 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <focusCycleRoot value="false"/>
+          <focusTraversalPolicyProvider value="false"/>
+          <verifyInputWhenFocusTarget value="true"/>
+        </properties>
       </component>
     </children>
   </grid>
