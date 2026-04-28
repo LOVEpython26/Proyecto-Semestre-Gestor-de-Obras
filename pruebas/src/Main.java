@@ -1,4 +1,4 @@
-import Interfaces.Pest;
+import Logica.Pest;
 
 import javax.swing.*;
 
