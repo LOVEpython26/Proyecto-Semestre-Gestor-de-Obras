@@ -40,12 +40,12 @@ public class Pest {
                             break;
                         case 2: // Ingeniero
                             frameDestino.setTitle("Panel de Ingeniería - Presupuestos (RF03)");
-                            // frameDestino.setContentPane(new PanelIngeniero().panelPrincipal);
+                            frameDestino.setContentPane(new MenuIngeniero().panelIngeniero);
                             JOptionPane.showMessageDialog(null, "Bienvenido Ingeniero");
                             break;
                         case 3: // Operario
                             frameDestino.setTitle("Panel Operativo - Avance de Obra (RF04)");
-                            // frameDestino.setContentPane(new PanelOperario().panelPrincipal);
+                            frameDestino.setContentPane(new MenuOperario().panelOperario);
                             JOptionPane.showMessageDialog(null, "Bienvenido Operario");
                             break;
                     }
@@ -61,7 +61,7 @@ public class Pest {
                     if (win != null) win.dispose();
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Acceso Denegado: Datos incorrectos [cite: 34]");
+                    JOptionPane.showMessageDialog(null, "Acceso Denegado: Datos incorrectos ");
                 }
             }
         });
