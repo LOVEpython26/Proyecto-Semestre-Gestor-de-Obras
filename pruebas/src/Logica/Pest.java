@@ -19,16 +19,18 @@ public class Pest {
         comprobarBotton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String correo = texto1.getText();
+                String nombreUsuario = texto1.getText();
                 String contraseña = texto2.getText();
-                boolean val = lj.validarUsuario(correo,contraseña);
+                boolean val = lj.validarUsuario(nombreUsuario,contraseña);
                 if (val) { // Si val es true (El usuario existe y la clave coincide)
-                    // SOLO EL POPUP DE ÉXITO
-                    JOptionPane.showMessageDialog(null, "¡Acceso concedido! Estás dentro.", "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    // Obtenemos el rol que acabamos de setear en la lógica
+                    String miRol = lj.getRol();
 
-                    // Limpiamos las cajas para que puedas probar con otro usuario si quieres
-                    texto1.setText("");
-                    texto2.setText("");
+                    // Mostramos el popup personalizado
+                    JOptionPane.showMessageDialog(null,
+                            "¡Acceso concedido!\nBienvenido " + nombreUsuario + ".\nTu rol es: " + miRol,
+                            "Login Exitoso",
+                            JOptionPane.INFORMATION_MESSAGE);
 
                 } else { // Si la clave o el usuario están mal
                     // SOLO EL POPUP DE ERROR
