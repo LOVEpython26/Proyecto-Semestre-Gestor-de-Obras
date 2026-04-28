@@ -1,6 +1,7 @@
 package Logica;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,6 +19,7 @@ public class FormularioRegistro {
     private JPasswordField passwordField1;
     private JLabel confrimarContraseña;
     private JPasswordField passwordField2;
+    private JButton atrasButton;
 
     public FormularioRegistro() {
         // Lógica de tu botón adaptada a tus nombres de variables
@@ -67,6 +69,26 @@ public class FormularioRegistro {
                     desplegableRoles.setSelectedIndex(0);
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al registrar el usuario en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        });
+        atrasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 1. Volvemos a crear y mostrar el Menú del Administrador
+                JFrame frameMenu = new JFrame("Panel de Administración - Sistema DSW");
+                // OJO: Asegúrate de que "panelAdmin" sea el nombre correcto de tu panel principal en MenuAdministrador
+                frameMenu.setContentPane(new MenuAdministrador().panelAdmin);
+                frameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frameMenu.pack();
+                frameMenu.setLocationRelativeTo(null); // Lo centra en la pantalla
+                frameMenu.setVisible(true);
+
+                // 2. Ahora sí, cerramos el formulario de registro actual
+                Window ventanaActual = SwingUtilities.getWindowAncestor(panelFormulario);
+                if (ventanaActual != null) {
+                    ventanaActual.dispose();
                 }
             }
 
