@@ -1,7 +1,6 @@
 package Logica;
 
 import  javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,36 +22,26 @@ public class Pest {
                 String correo = texto1.getText();
                 String contraseña = texto2.getText();
                 boolean val = lj.validarUsuario(correo,contraseña);
+                if (val) { // Si val es true (El usuario existe y la clave coincide)
+                    // SOLO EL POPUP DE ÉXITO
+                    JOptionPane.showMessageDialog(null, "¡Acceso concedido! Estás dentro.", "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
-                if (val == true){
-                    // --- ESTO ES LO QUE SE AGREGA PARA ABRIR LA OTRA VENTANA ---
+                    // Limpiamos las cajas para que puedas probar con otro usuario si quieres
+                    texto1.setText("");
+                    texto2.setText("");
 
-                    // 1. Preparamos y mostramos la pantalla de "confirmacion"
-                    JFrame frameConfirmacion = new JFrame("Confirmación");
-                    frameConfirmacion.setContentPane(new confirmacion().panel1);
-                    frameConfirmacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    frameConfirmacion.pack();
-                    frameConfirmacion.setLocationRelativeTo(null); // Para que salga en el centro
-                    frameConfirmacion.setVisible(true);
-
-                    // 2. Cerramos esta pantalla actual del Login
-                    Window ventanaActual = SwingUtilities.getWindowAncestor(panelPrincipal);
-                    if (ventanaActual != null) {
-                        ventanaActual.dispose();
-                    }
-
-                } else {
-                    // --- ESTO ES LO QUE SE AGREGA SI LA CONTRASEÑA ESTÁ MAL ---
-                    // En vez de poner "Rechazado" en la caja, lanzamos una alerta visual
+                } else { // Si la clave o el usuario están mal
+                    // SOLO EL POPUP DE ERROR
                     JOptionPane.showMessageDialog(null, "Datos incorrectos. Intenta de nuevo.", "Error de Acceso", JOptionPane.ERROR_MESSAGE);
 
                     // Limpiamos las cajas para que vuelva a escribir
                     texto1.setText("");
                     texto2.setText("");
                 }
+
+
             }
         });
     }
-
 
 }
