@@ -1,4 +1,6 @@
-package Logica;
+package Interfaz;
+
+import Logica.Logica;
 
 import javax.swing.*;
 import java.awt.*;

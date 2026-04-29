@@ -1,4 +1,4 @@
-package Logica;
+package Interfaz;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class Menu {
     private JButton ingenieríaYCostosButton;
     private JButton controlDeObraButton;
     private JButton sistemaYReportesButton;
-    private JButton button9;
+    private JButton cerrarSesionButton;
 
     public Menu(int idRol) {
         // 2. Ejecutamos la seguridad para ocultar/mostrar botones según quién entró
@@ -34,6 +34,36 @@ public class Menu {
                 if (ventanaActual != null) {
                     ventanaActual.dispose();
                 }
+            }
+        });
+        cerrarSesionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int confirmacion = JOptionPane.showConfirmDialog(null,
+                        "¿Estás seguro de que deseas cerrar sesión?",
+                        "Confirmar Salida",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+
+                // 2. Si responde que "Sí" (YES_OPTION), hacemos el cambio de ventanas
+                if (confirmacion == JOptionPane.YES_OPTION) {
+
+                    // A. Abrimos de nuevo el Login (tu clase Pest)
+                    JFrame frameLogin = new JFrame("Acceso al Sistema DSW");
+                    // OJO: Asegúrate de que 'panelPrincipal' sea el nombre del panel en tu Pest.java
+                    frameLogin.setContentPane(new Pest().panelPrincipal);
+                    frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frameLogin.pack();
+                    frameLogin.setLocationRelativeTo(null); // Centrar en pantalla
+                    frameLogin.setVisible(true);
+
+                    // B. Cerramos la ventana del Menú actual para liberar memoria
+                    Window ventanaActual = SwingUtilities.getWindowAncestor(panelMenu);
+                    if (ventanaActual != null) {
+                        ventanaActual.dispose();
+                    }
+                }
+                // Si dice que "No", el if no se ejecuta y simplemente se queda en el Menú.
             }
         });
     }
