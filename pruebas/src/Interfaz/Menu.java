@@ -9,7 +9,7 @@ public class Menu {
 
     public JPanel panelMenu;
     private JButton registraUsuariosButton;
-    private JButton ingenieríaYCostosButton;
+    private JButton proyectosYCostosButton;
     private JButton controlDeObraButton;
     private JButton sistemaYReportesButton;
     private JButton cerrarSesionButton;
@@ -72,6 +72,7 @@ public class Menu {
     private void aplicarRestricciones(int idRol) {
         // Por seguridad, apagamos todos los botones sensibles primero
         registraUsuariosButton.setVisible(false);
+        proyectosYCostosButton.setVisible(false);
 
         // Si en el futuro agregas más botones (ej. Presupuestos), apágalos aquí también:
         // btnPresupuestos.setVisible(false);
@@ -79,10 +80,11 @@ public class Menu {
         // Encendemos solo lo que le toca a cada rol
         switch (idRol) {
             case 1: // ADMINISTRADOR
-                registraUsuariosButton.setVisible(true); // Solo el Admin puede ver este botón
+                registraUsuariosButton.setVisible(true); // Solo el Admin puede ver estos boton
+                proyectosYCostosButton.setVisible(true);
                 break;
             case 2: // INGENIERO
-                // btnPresupuestos.setVisible(true);
+                proyectosYCostosButton.setVisible(true);
                 break;
             case 3: // OPERARIO
                 // btnAvances.setVisible(true);
