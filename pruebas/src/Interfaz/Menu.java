@@ -66,6 +66,29 @@ public class Menu {
                 // Si dice que "No", el if no se ejecuta y simplemente se queda en el Menú.
             }
         });
+        proyectosYCostosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 1. Creamos y configuramos la nueva ventana del Módulo de Ingeniería
+                JFrame frameIngenieria = new JFrame("Módulo de Ingeniería y Costos - DSW");
+
+                // OJO: Si tu clase se llama PanelIngeniero, cámbialo aquí.
+                // También le pasamos el idRol (si tu constructor lo pide) para mantener la sesión.
+                frameIngenieria.setContentPane(new PanelIngenierio(idRol).panelIngenieria);
+
+                frameIngenieria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frameIngenieria.pack();
+                frameIngenieria.setLocationRelativeTo(null); // Esto centra la ventana en la pantalla
+                frameIngenieria.setVisible(true); // ¡Mostramos el panel!
+
+                // 2. Cerramos la ventana del Menú actual para limpiar la memoria (RNF04)
+                // Asegúrate de que "panelMenu" sea el nombre del JPanel principal de esta ventana
+                Window ventanaActual = SwingUtilities.getWindowAncestor(panelMenu);
+                if (ventanaActual != null) {
+                    ventanaActual.dispose();
+                }
+            }
+        });
     }
 
     // 4. Método "Cadenero": Controla la visibilidad de los botones (RF02)
