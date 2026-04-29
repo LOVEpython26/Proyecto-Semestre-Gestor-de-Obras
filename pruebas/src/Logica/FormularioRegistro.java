@@ -57,7 +57,32 @@ public class FormularioRegistro {
 
                 // 3. Enviar a base de datos (RNF03)
                 Logica lj = new Logica();
+
+
+                // ¡AQUÍ ESTÁ LA NUEVA VALIDACIÓN!
+                // Preguntamos si el correo ya está registrado antes de hacer cualquier cosa
+                if (lj.existeUsuario(correo)) {
+                    JOptionPane.showMessageDialog(null,
+                            "¡Error! Ya existe un usuario registrado con el correo: " + correo,
+                            "Usuario Duplicado",
+                            JOptionPane.ERROR_MESSAGE);
+
+                    // Seleccionamos el texto del correo para que el admin lo cambie rápido
+                    correoBox.requestFocus();
+                    correoBox.selectAll();
+                    return; // Detenemos la ejecución aquí, no lo registra
+                }
+
+                if (lj.existeContrasena(pass)) {
+                    JOptionPane.showMessageDialog(null, "Esa contraseña ya está siendo usada por otro usuario. Elige una clave diferente y única.", "Contraseña Duplicada", JOptionPane.WARNING_MESSAGE);
+                    passwordField1.setText("");
+                    passwordField2.setText("");
+                    passwordField1.requestFocus();
+                    return;
+                }
+
                 boolean exito = lj.registrarUsuario(nombre, correo, pass, indexSeleccionado);
+
 
                 if (exito) {
                     JOptionPane.showMessageDialog(null, "¡Personal registrado exitosamente!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);

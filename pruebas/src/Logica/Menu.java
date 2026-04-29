@@ -9,6 +9,10 @@ public class Menu {
 
     public JPanel panelMenu;
     private JButton registraUsuariosButton;
+    private JButton ingenieríaYCostosButton;
+    private JButton controlDeObraButton;
+    private JButton sistemaYReportesButton;
+    private JButton button9;
 
     public Menu(int idRol) {
         // 2. Ejecutamos la seguridad para ocultar/mostrar botones según quién entró

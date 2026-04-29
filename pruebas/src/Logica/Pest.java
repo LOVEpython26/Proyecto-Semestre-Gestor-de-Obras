@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 
 public class Pest {
     public JPanel panelPrincipal;
-    private JTextField texto1;
+    private JTextField usuarioBox;
     private JButton comprobarBotton;
     private JLabel titulo;
-    private JLabel caja1;
-    private JLabel caja2;
+    private JLabel texto1;
+    private JLabel texto2;
     private JPasswordField passwordBox;
     private Logica lj = new Logica();
 
@@ -20,7 +20,7 @@ public class Pest {
         comprobarBotton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String user = texto1.getText();
+                String user = usuarioBox.getText();
                 String pass = passwordBox.getText();
 
                 // Llamamos al método de la lógica
@@ -64,6 +64,9 @@ public class Pest {
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Acceso Denegado: Datos incorrectos ");
+                    usuarioBox.setText("");
+                    passwordBox.setText("");
+
                 }
             }
         });
