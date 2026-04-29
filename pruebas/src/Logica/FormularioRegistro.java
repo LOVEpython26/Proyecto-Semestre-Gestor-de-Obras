@@ -79,7 +79,7 @@ public class FormularioRegistro {
                 // 1. Volvemos a crear y mostrar el Menú del Administrador
                 JFrame frameMenu = new JFrame("Panel de Administración - Sistema DSW");
                 // OJO: Asegúrate de que "panelAdmin" sea el nombre correcto de tu panel principal en MenuAdministrador
-                frameMenu.setContentPane(new MenuAdministrador().panelAdmin);
+                frameMenu.setContentPane(new Menu(1).panelMenu);
                 frameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameMenu.pack();
                 frameMenu.setLocationRelativeTo(null); // Lo centra en la pantalla

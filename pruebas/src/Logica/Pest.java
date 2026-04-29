@@ -32,20 +32,20 @@ public class Pest {
                     // Decidimos qué panel mostrar según el rol
                     JFrame frameDestino = new JFrame();
 
+                    // Cargamos el ÚNICO menú, pasándole el rol para que él mismo se restrinja
+                    frameDestino.setContentPane(new Menu(rol).panelMenu);
+
                     switch (rol) {
                         case 1: // Administrador
                             frameDestino.setTitle("Panel de Administración - Registro de Personal (RF01)");
-                            frameDestino.setContentPane(new MenuAdministrador().panelAdmin);
                             JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
                             break;
                         case 2: // Ingeniero
                             frameDestino.setTitle("Panel de Ingeniería - Presupuestos (RF03)");
-                            frameDestino.setContentPane(new MenuIngeniero().panelIngeniero);
                             JOptionPane.showMessageDialog(null, "Bienvenido Ingeniero");
                             break;
                         case 3: // Operario
                             frameDestino.setTitle("Panel Operativo - Avance de Obra (RF04)");
-                            frameDestino.setContentPane(new MenuOperario().panelOperario);
                             JOptionPane.showMessageDialog(null, "Bienvenido Operario");
                             break;
                     }
