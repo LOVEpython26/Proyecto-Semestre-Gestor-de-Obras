@@ -2,10 +2,8 @@ package Logica;
 
 import ConexionRemota.ConexionBD;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.HashMap;
 
 public class Logica {
     private String conts;
@@ -203,5 +201,63 @@ public class Logica {
         }
     }
 
+    public HashMap<String, Integer> obtenerProyectosParaCombo() {
+        // Creamos un "diccionario" donde la clave es el Nombre (String) y el valor es el ID (Integer)
+        HashMap<String, Integer> mapaProyectos = new HashMap<>();
+
+        ConexionBD conexion = new ConexionBD();
+        Connection con = conexion.getConnection();
+
+        // Consulta SQL basándonos estrictamente en tu tabla proyectos
+        String sql = "SELECT id_proyecto, nombre FROM proyectos WHERE estado != 'Terminado'";
+
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                // Guardamos el nombre y el id correspondientes en el mapa
+                int id = rs.getInt("id_proyecto");
+                String nombre = rs.getString("nombre");
+
+                mapaProyectos.put(nombre, id);
+            }
+
+            con.close(); // RNF01: Mantenemos las conexiones limpias
+        } catch (SQLException e) {
+            System.err.println("Error al cargar la lista de proyectos: " + e.getMessage());
+        }
+
+        return mapaProyectos;
+    }
+
+    public boolean registrarItem(int idProyecto, String descripcion, int cantidad, double precioUnitario) {
+        ConexionBD conexion = new ConexionBD();
+        Connection con = conexion.getConnection();
+
+        // Consulta SQL respetando exactamente las columnas de tu tabla 'items'[cite: 2]
+        String sql = "INSERT INTO items (id_proyecto, descripcion, cantidad, precio_unitario) VALUES (?, ?, ?, ?)";
+
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            // Asignamos los valores a los signos de interrogación
+            pst.setInt(1, idProyecto);         // El ID numérico que sacamos del HashMap
+            pst.setString(2, descripcion);     // Ej: "Excavación"[cite: 2]
+            pst.setInt(3, cantidad);           // Ej: 100[cite: 2]
+            pst.setDouble(4, precioUnitario);  // Entrará como 0.0 por ahora, esperando al APU
+
+            int filasAfectadas = pst.executeUpdate();
+
+            con.close(); // RNF01: Cerramos la conexión para no saturar Clever Cloud
+
+            // Si filasAfectadas es mayor a 0, significa que se insertó correctamente
+            return filasAfectadas > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error SQL al registrar el ítem de obra: " + e.getMessage());
+            return false;
+        }
+    }
 
 }

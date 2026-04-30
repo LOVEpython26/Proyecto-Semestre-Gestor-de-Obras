@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PanelRecursos {
+public class FormularioRecursos {
     public JPanel panelRecursos;
     private JLabel tituloFijado;
     private JLabel nombreRecurso;
@@ -19,7 +19,7 @@ public class PanelRecursos {
     private JButton regresarButton;
     private JButton guardarButton;
 
-    public PanelRecursos(int idRol) {
+    public FormularioRecursos(int idRol) {
 
         regresarButton.addActionListener(new ActionListener() {
             @Override
