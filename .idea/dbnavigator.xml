@@ -33,7 +33,8 @@
       <console name="Connection1" type="STANDARD" schema="bltfuqqegb4rlc8w1w7m" session="Main"><![CDATA[select * from public.usuarios
 DELETE FROM public.usuarios WHERE correo = 'pepelin@gmail.com';
 DELETE FROM public.proyectos WHERE id_proyecto = 6 or id_proyecto = 7;
-select * from public.recursos;]]></console>
+select * from public.recursos;
+DELETE FROM public.recursos WHERE id_recurso = 5;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
