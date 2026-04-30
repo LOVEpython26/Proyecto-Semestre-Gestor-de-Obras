@@ -31,14 +31,18 @@
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="9d9cc530-609e-4471-b0d7-5c1a047db880">
       <console name="Connection1" type="STANDARD" schema="bltfuqqegb4rlc8w1w7m" session="Main"><![CDATA[select * from public.usuarios
-DELETE FROM public.usuarios WHERE correo = 'pepelin@gmail.com';]]></console>
+DELETE FROM public.usuarios WHERE correo = 'pepelin@gmail.com';
+DELETE FROM public.proyectos WHERE id_proyecto = 6 or id_proyecto = 7;
+select * from public.recursos;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" object-ref="consoles/Connection1" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
     <prerequisites />
@@ -48,6 +52,7 @@ DELETE FROM public.usuarios WHERE correo = 'pepelin@gmail.com';]]></console>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" dataset="public.usuarios" active-filter-id="" />
+    <filter-actions connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" dataset="public.recursos" active-filter-id="" />
     <filter-actions connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" dataset="public.roles" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

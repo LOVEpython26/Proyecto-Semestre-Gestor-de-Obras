@@ -23,7 +23,7 @@ public class FormularioRegistro {
     private JPasswordField passwordField2;
     private JButton atrasButton;
 
-    public FormularioRegistro() {
+    public FormularioRegistro(int idRol) {
         // Lógica de tu botón adaptada a tus nombres de variables
         registrarButton.addActionListener(new ActionListener() {
             @Override
@@ -94,6 +94,10 @@ public class FormularioRegistro {
                     passwordField1.setText("");
                     passwordField2.setText(""); // Limpiamos también la confirmación
                     desplegableRoles.setSelectedIndex(0);
+
+                    // Ponemos el cursor en el primer campo para el siguiente registro
+                    nombreBox.requestFocus();
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al registrar el usuario en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -106,7 +110,7 @@ public class FormularioRegistro {
                 // 1. Volvemos a crear y mostrar el Menú del Administrador
                 JFrame frameMenu = new JFrame("Panel de Administración - Sistema DSW");
                 // OJO: Asegúrate de que "panelAdmin" sea el nombre correcto de tu panel principal en MenuAdministrador
-                frameMenu.setContentPane(new Menu(1).panelMenu);
+                frameMenu.setContentPane(new Menu(idRol).panelMenu);
                 frameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameMenu.pack();
                 frameMenu.setLocationRelativeTo(null); // Lo centra en la pantalla

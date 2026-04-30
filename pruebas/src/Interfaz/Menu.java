@@ -24,7 +24,7 @@ public class Menu {
             public void actionPerformed(ActionEvent e) {
                 // Abrimos la ventana de registro que ya tienes lista
                 JFrame frameRegistro = new JFrame("Registro de Personal - Sistema DSW");
-                frameRegistro.setContentPane(new FormularioRegistro().panelFormulario);
+                frameRegistro.setContentPane(new FormularioRegistro(idRol).panelFormulario);
                 frameRegistro.pack();
                 frameRegistro.setLocationRelativeTo(null); // Centrar en pantalla
                 frameRegistro.setVisible(true);

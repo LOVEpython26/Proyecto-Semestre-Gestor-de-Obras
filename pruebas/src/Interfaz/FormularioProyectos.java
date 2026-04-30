@@ -1,17 +1,32 @@
 package Interfaz;
 
+import Logica.Logica;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.text.DateFormat;
 
 public class FormularioProyectos {
     public JPanel panelProyectos;
     private JButton salirButton;
     private JButton guardarButton;
     private JLabel tituloFijado;
+    private JTextField nombreBox;
+    private JTextField ubicacionBox;
+    private JLabel texto1;
+    private JLabel texto2;
+    private JLabel texto3;
+    private JTextField fhInicioBox;
 
     public FormularioProyectos(int idRol) {
+
+        fhInicioBox.setText("AAAA-MM-DD"); // Si no escribió nada, vuelve la guía
+        fhInicioBox.setForeground(Color.GRAY);
+
         salirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,5 +50,63 @@ public class FormularioProyectos {
             }
 
         });
+        guardarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String nombre = nombreBox.getText().trim();
+                String ubicacion = ubicacionBox.getText().trim();
+                String fecha = fhInicioBox.getText().trim();
+
+
+
+                // El estado es "Activo" por defecto como acordamos
+                String estado = "Activo";
+
+                // 2. Validación básica (RNF08) para no enviar basura a la BD
+                if (nombre.isEmpty() || ubicacion.isEmpty() || fecha.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Error: Debes llenar todos los campos.");
+                    return;
+                }
+
+                // 3. Llamada a la lógica (Aquí tus compañeros conectan el SQL)
+                Logica lj = new Logica();
+                boolean exito = lj.registrarProyecto(nombre, ubicacion, fecha, estado);
+
+                if (exito) {
+                    JOptionPane.showMessageDialog(null, "¡Proyecto guardado con éxito!");
+
+                    // --- AQUÍ ESTÁ LO QUE PEDISTE: LIMPIAR CAMPOS ---
+                    nombreBox.setText("");
+                    ubicacionBox.setText("");
+                    fhInicioBox.setText("");
+
+                    // Ponemos el cursor en el primer campo para el siguiente registro
+                    nombreBox.requestFocus();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un error al guardar en la base de datos.");
+                }
+            }
+
+        });
+        fhInicioBox.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (fhInicioBox.getText().equals("AAAA-MM-DD")) {
+                    fhInicioBox.setText(""); // Se limpia solo al hacer clic
+                    fhInicioBox.setForeground(Color.GRAY); // Color de escritura real
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (fhInicioBox.getText().isEmpty()) {
+                    fhInicioBox.setText("AAAA-MM-DD"); // Si no escribió nada, vuelve la guía
+                    fhInicioBox.setForeground(Color.GRAY);
+                }
+            }
+        });
     }
+
+
 }
