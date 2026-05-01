@@ -11,10 +11,10 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
-      <assistant-state connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+      <assistant-state connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
     </assistants>
@@ -33,7 +33,7 @@
       <console name="Connection1" type="STANDARD" schema="bltfuqqegb4rlc8w1w7m" session="Main"><![CDATA[select * from public.usuarios
 DELETE FROM public.usuarios WHERE correo = 'pepelin@gmail.com';
 DELETE FROM public.proyectos WHERE id_proyecto = 6 or id_proyecto = 7;
-select * from public.items;
+select * from public.apu;
 DELETE FROM public.items WHERE id_item = 5 or id_item = 4 or id_item =6;]]></console>
     </connection>
   </component>

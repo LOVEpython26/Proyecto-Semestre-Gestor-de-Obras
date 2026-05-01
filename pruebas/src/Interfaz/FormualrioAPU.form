@@ -109,7 +109,7 @@
           <grid row="12" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Cantidad Requerida"/>
+          <text value="Cantidad Requerida del Recurso"/>
         </properties>
       </component>
       <component id="52f56" class="javax.swing.JTextField" binding="ctRequeridadBox">
@@ -149,14 +149,6 @@
           <grid row="16" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="8e519" class="javax.swing.JTable" binding="table">
-        <constraints>
-          <grid row="18" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
       <component id="1b4ce" class="javax.swing.JLabel" binding="titulo2">
         <constraints>
           <grid row="17" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -210,6 +202,21 @@
           <text value="$0"/>
         </properties>
       </component>
+      <scrollpane id="ee82d">
+        <constraints>
+          <grid row="18" column="1" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="500" height="150"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8e519" class="javax.swing.JTable" binding="table">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>
