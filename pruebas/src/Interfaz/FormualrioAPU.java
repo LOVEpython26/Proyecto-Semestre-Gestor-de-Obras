@@ -8,10 +8,24 @@ import java.awt.event.ActionListener;
 public class FormualrioAPU {
     public JPanel panelAPU;
     private JLabel tituloFijado;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
+    private JComboBox proyectosBox;
+    private JComboBox itemsBox;
     private JButton regresarButton;
     private JButton agregarAnalisisButton;
+    private JComboBox recursosBox;
+    private JTextField cantidadBox;
+    private JTextField ctRequeridadBox;
+    private JTable table;
+    private JTextField totalBox;
+    private JLabel titulo1;
+    private JLabel texto2;
+    private JLabel texto3;
+    private JLabel texto4;
+    private JLabel texto5;
+    private JTextField vUnitarioBox;
+    private JLabel texto6;
+    private JLabel titulo2;
+    private JLabel texto7;
 
     public FormualrioAPU(int idRol) {
         regresarButton.addActionListener(new ActionListener() {

@@ -258,6 +258,8 @@ public class Logica {
             System.err.println("Error SQL al registrar el ítem de obra: " + e.getMessage());
             return false;
         }
+
+
     }
 
 }
