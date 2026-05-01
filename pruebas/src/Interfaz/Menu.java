@@ -1,5 +1,9 @@
 package Interfaz;
 
+import Interfaz.Formularios.FormularioAvances;
+import Interfaz.Formularios.FormularioRegistro;
+import Interfaz.Menus.PanelIngenierio;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -89,6 +93,31 @@ public class Menu {
                 }
             }
         });
+        controlDeObraButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // 1. Creamos y configuramos la nueva ventana del Módulo de Ingeniería
+                JFrame frameIngenieria = new JFrame("Módulo de Ingeniería y Costos - DSW");
+
+                // OJO: Si tu clase se llama PanelIngeniero, cámbialo aquí.
+                // También le pasamos el idRol (si tu constructor lo pide) para mantener la sesión.
+                frameIngenieria.setContentPane(new FormularioAvances(idRol).panelAvances);
+
+                frameIngenieria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frameIngenieria.pack();
+                frameIngenieria.setLocationRelativeTo(null); // Esto centra la ventana en la pantalla
+                frameIngenieria.setVisible(true); // ¡Mostramos el panel!
+
+                // 2. Cerramos la ventana del Menú actual para limpiar la memoria (RNF04)
+                // Asegúrate de que "panelMenu" sea el nombre del JPanel principal de esta ventana
+                Window ventanaActual = SwingUtilities.getWindowAncestor(panelMenu);
+                if (ventanaActual != null) {
+                    ventanaActual.dispose();
+                }
+
+            }
+        });
     }
 
     // 4. Método "Cadenero": Controla la visibilidad de los botones (RF02)
@@ -110,7 +139,6 @@ public class Menu {
                 proyectosYCostosButton.setVisible(true);
                 break;
             case 3: // OPERARIO
-                // btnAvances.setVisible(true);
                 break;
         }
     }

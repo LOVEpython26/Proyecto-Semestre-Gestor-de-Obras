@@ -98,4 +98,50 @@ public class LogicaAPU {
         }
         return lista;
     }
+
+    /**
+     * Guarda el APU completo: Inserta los recursos en la tabla 'apu'
+     * y actualiza el precio total en la tabla 'items'.
+     */
+    public boolean guardarAnalisisCompleto(int idItem, double precioTotal, ArrayList<Object[]> datosTabla) {
+        ConexionBD conexion = new ConexionBD();
+
+        // 1. SQL para insertar cada material en la tabla apu
+        String sqlAPU = "INSERT INTO apu (id_item, id_recurso, cantidad, costo_unitario) VALUES (?, ?, ?, ?)";
+
+        // 2. SQL para actualizar el precio del ítem principal
+        String sqlItem = "UPDATE items SET precio_unitario = ? WHERE id_item = ?";
+
+        try (Connection con = conexion.getConnection()) {
+            // Apagamos el guardado automático para proteger la base de datos si algo falla a la mitad
+            con.setAutoCommit(false);
+
+            // A. Guardar todos los recursos en la tabla APU
+            try (PreparedStatement pstAPU = con.prepareStatement(sqlAPU)) {
+                for (Object[] fila : datosTabla) {
+                    pstAPU.setInt(1, idItem);
+                    pstAPU.setInt(2, Integer.parseInt(fila[0].toString()));       // ID Recurso
+                    pstAPU.setDouble(3, Double.parseDouble(fila[2].toString()));  // Rendimiento (Cantidad)
+                    pstAPU.setDouble(4, Double.parseDouble(fila[3].toString()));  // Valor Unitario
+                    pstAPU.addBatch(); // Lo agregamos a la "cola" de guardado
+                }
+                pstAPU.executeBatch(); // Ejecutamos toda la cola de un solo golpe
+            }
+
+            // B. Actualizar el precio total en la tabla ITEMS
+            try (PreparedStatement pstItem = con.prepareStatement(sqlItem)) {
+                pstItem.setDouble(1, precioTotal);
+                pstItem.setInt(2, idItem);
+                pstItem.executeUpdate();
+            }
+
+            // Si llegamos hasta aquí sin errores, confirmamos TODOS los cambios en la base de datos
+            con.commit();
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("Error crítico al guardar el APU: " + e.getMessage());
+            return false;
+        }
+    }
 }
