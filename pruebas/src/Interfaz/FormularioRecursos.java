@@ -1,6 +1,7 @@
 package Interfaz;
 
-import Logica.Logica;
+import Logica.LogicaProyectos;
+import Logica.LogicaRecursos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,7 +72,7 @@ public class FormularioRecursos {
                     double costo = Double.parseDouble(costoTexto);
 
                     // 4. Llamado a la lógica de negocio (RF06)
-                    Logica lj = new Logica();
+                    LogicaRecursos lj = new Logica.LogicaRecursos();
                     boolean exito = lj.registrarRecurso(nombre, tipo, costo);
 
                     if (exito) {

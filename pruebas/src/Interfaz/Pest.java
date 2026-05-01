@@ -1,6 +1,6 @@
 package Interfaz;
 
-import Logica.Logica;
+import Logica.LogicaUsuario;
 
 import  javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class Pest {
     private JLabel texto1;
     private JLabel texto2;
     private JPasswordField passwordBox;
-    private Logica lj = new Logica();
+    private LogicaUsuario lj = new LogicaUsuario();
 
 
     public Pest() {

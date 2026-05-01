@@ -1,6 +1,7 @@
 package Interfaz;
 
-import Logica.Logica;
+import Logica.LogicaItems;
+import Logica.LogicaProyectos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +29,7 @@ public class FormularioItems {
 
         this.idrol=idRol;
 
-        Logica lj = new Logica();
+        LogicaProyectos lj = new LogicaProyectos();
         listaProyectos = lj.obtenerProyectosParaCombo();
 
         proyectosBox.removeAllItems(); // Limpieza por seguridad
@@ -89,7 +90,7 @@ public class FormularioItems {
                     int idProyecto = listaProyectos.get(nombreProyecto);
 
                     // 3. Enviamos a la Lógica
-                    Logica lj = new Logica();
+                    LogicaItems lj = new LogicaItems();
                     // OJO: El precio se envía como 0 (porque luego el APU lo calculará)
                     boolean exito = lj.registrarItem(idProyecto, descripcion, cantidad, 0.0);
 

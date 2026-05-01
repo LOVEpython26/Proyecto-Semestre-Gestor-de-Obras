@@ -1,6 +1,6 @@
 package Interfaz;
 
-import Logica.Logica;
+import Logica.LogicaProyectos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.text.DateFormat;
 
 public class FormularioProyectos {
     public JPanel panelProyectos;
@@ -70,7 +69,7 @@ public class FormularioProyectos {
                 }
 
                 // 3. Llamada a la lógica (Aquí tus compañeros conectan el SQL)
-                Logica lj = new Logica();
+                LogicaProyectos lj = new Logica.LogicaProyectos();
                 boolean exito = lj.registrarProyecto(nombre, ubicacion, fecha, estado);
 
                 if (exito) {

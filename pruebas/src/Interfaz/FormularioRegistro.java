@@ -1,6 +1,6 @@
 package Interfaz;
 
-import Logica.Logica;
+import Logica.LogicaUsuario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,7 +58,7 @@ public class FormularioRegistro {
                 }
 
                 // 3. Enviar a base de datos (RNF03)
-                Logica lj = new Logica();
+                LogicaUsuario lj = new LogicaUsuario();
 
 
                 // ¡AQUÍ ESTÁ LA NUEVA VALIDACIÓN!
