@@ -12,6 +12,7 @@ public class PanelIngenierio {
     private JButton atrasButton;
     private JButton gestionDeRecursosButton;
     private JButton gestiónDeÍtemsButton;
+    private JButton gestionAPUButton;
 
     public PanelIngenierio(int idRol) {
         configurarProyectosButton.addActionListener(new ActionListener() {
@@ -106,6 +107,28 @@ public class PanelIngenierio {
                 }
             }
 
+        });
+        gestionAPUButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frameProyectos = new JFrame("Gestión de APU - DSW");
+
+                // PASO CLAVE: Le pasamos el 'idRol' para mantener la sesión activa.
+                // OJO: Asegúrate de que tu clase se llame 'FormularioProyectos' y su panel principal 'panelProyectos'.
+                frameProyectos.setContentPane(new FormualrioAPU(idRol).panelAPU);
+
+                frameProyectos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frameProyectos.pack();
+                frameProyectos.setLocationRelativeTo(null); // Centra la ventana en la pantalla
+                frameProyectos.setVisible(true); // Muestra el nuevo formulario
+
+                // 2. Cerramos la ventana de Ingeniería actual para liberar memoria (RNF04)
+                // Asegúrate de que "panelIngenieria" sea el nombre del JPanel principal de esta clase.
+                Window ventanaActual = SwingUtilities.getWindowAncestor(panelIngenieria);
+                if (ventanaActual != null) {
+                    ventanaActual.dispose();
+                }
+            }
         });
     }
 }
