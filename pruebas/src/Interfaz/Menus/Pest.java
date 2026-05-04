@@ -1,4 +1,4 @@
-package Interfaz;
+package Interfaz.Menus;
 
 import Logica.LogicaUsuario;
 

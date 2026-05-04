@@ -1,8 +1,7 @@
-package Interfaz;
+package Interfaz.Menus;
 
 import Interfaz.Formularios.FormularioAvances;
 import Interfaz.Formularios.FormularioRegistro;
-import Interfaz.Menus.PanelIngenierio;
 
 import javax.swing.*;
 import java.awt.*;

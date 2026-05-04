@@ -1,6 +1,6 @@
 package Interfaz.Formularios;
 
-import Interfaz.Menu;
+import Interfaz.Menus.Menu;
 import Logica.LogicaUsuario;
 
 import javax.swing.*;

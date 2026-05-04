@@ -11,10 +11,10 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
-      <assistant-state connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+      <assistant-state connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
     </assistants>
@@ -33,17 +33,46 @@
       <console name="Connection1" type="STANDARD" schema="bltfuqqegb4rlc8w1w7m" session="Main"><![CDATA[select * from public.usuarios
 DELETE FROM public.usuarios WHERE correo = 'pepelin@gmail.com';
 DELETE FROM public.proyectos WHERE id_proyecto = 6 or id_proyecto = 7;
-select * from public.apu;
-DELETE FROM public.items WHERE id_item = 5 or id_item = 4 or id_item =6;]]></console>
+select * from public.avances;
+DELETE FROM public.items WHERE id_item = 5 or id_item = 4 or id_item =6;
+
+
+CREATE OR REPLACE PROCEDURE public.registrar_avance(
+    p_id_proyecto INT,
+    p_porcentaje NUMERIC,
+    p_descripcion VARCHAR
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- OJO: Verifica si tu columna de fecha se llama 'fecha', 'fecha_reporte' o 'fecha_registro'
+    INSERT INTO avances (id_proyecto, fecha, porcentaje, descripcion)
+    VALUES (p_id_proyecto, CURRENT_DATE, p_porcentaje, p_descripcion);
+END;
+
+-- Tu código fiel, solo con el "public." añadido
+CREATE OR REPLACE PROCEDURE public.actualizar_presupuesto(p_id INT)
+LANGUAGE plpgsql
+AS $$
+DECLARE nuevo_total NUMERIC;
+BEGIN
+    SELECT SUM(cantidad * precio_unitario)
+    INTO nuevo_total
+    FROM items
+    WHERE id_proyecto = p_id;
+
+    UPDATE presupuestos
+    SET costo_total = nuevo_total
+    WHERE id_proyecto = p_id;
+END;
+$$;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="9d9cc530-609e-4471-b0d7-5c1a047db880" object-ref="consoles/Connection1" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
     <prerequisites />
@@ -338,11 +367,7 @@ DELETE FROM public.items WHERE id_item = 5 or id_item = 4 or id_item =6;]]></con
           <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
-          <content-type name="JSP" enabled="true" />
-          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
-          <content-type name="FTL" enabled="true" />
-          <content-type name="VTL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>

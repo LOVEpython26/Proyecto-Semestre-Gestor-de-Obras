@@ -1,4 +1,4 @@
-import Interfaz.Pest;
+import Interfaz.Menus.Pest;
 
 import javax.swing.*;
 
