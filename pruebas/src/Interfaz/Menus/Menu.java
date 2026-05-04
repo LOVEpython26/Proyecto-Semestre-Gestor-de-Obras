@@ -117,6 +117,12 @@ public class Menu {
 
             }
         });
+        sistemaYReportesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     // 4. Método "Cadenero": Controla la visibilidad de los botones (RF02)
