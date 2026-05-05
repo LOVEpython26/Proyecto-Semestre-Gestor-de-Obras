@@ -134,7 +134,7 @@ public class Menu {
 
                 frameIngenieria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameIngenieria.pack();
-                frameIngenieria.setSize(400,500);
+                frameIngenieria.setSize(700,550);
                 frameIngenieria.setLocationRelativeTo(null); // Esto centra la ventana en la pantalla
                 frameIngenieria.setVisible(true); // ¡Mostramos el panel!
 
