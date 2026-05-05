@@ -42,16 +42,34 @@ public class FormularioReportes {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (proyectosBox.getSelectedItem() != null) {
-                    // Sacamos el número del ID (Ej: de "1 - Puente Río" saca el "1")
-                    int idProy = Integer.parseInt(proyectosBox.getSelectedItem().toString().split(" - ")[0]);
 
-                    // -- Pestaña 1: Llenamos Presupuesto, Tabla APU y Texto automático --
-                    costoBox.setText(logica.obtenerPresupuestoTotal(idProy));
-                    table1.setModel(logica.obtenerModeloTablaAPU(idProy));
-                    textArea1.setText(logica.compilarObservaciones(idProy));
+                    String seleccion = proyectosBox.getSelectedItem().toString();
 
-                    // -- Pestaña 2: Llenamos el historial de reportes pasados --
-                    table2.setModel(logica.obtenerModeloHistorialReportes(idProy));
+                    // 1. FRENO DE MANO: Si escogen la opción por defecto, limpiamos la pantalla y evitamos el crash
+                    if (proyectosBox.equals("Seleccione un proyecto...")) {
+                        costoBox.setText("$0");
+                        table1.setModel(new javax.swing.table.DefaultTableModel(new String[]{"Ítem", "Recurso", "Cantidad", "Costo Unitario"}, 0));
+                        textArea1.setText("");
+                        table2.setModel(new javax.swing.table.DefaultTableModel(new String[]{"Fecha del Reporte", "Resumen Guardado"}, 0));
+
+                        return; // ¡LA MAGIA ESTÁ AQUÍ! Esto corta la ejecución para que no intente buscar un ID que no existe.
+                    }
+
+                    // 2. Si pasa el filtro anterior, es porque SÍ es un proyecto real. Sacamos el ID de forma segura.
+                    try {
+                        int idProy = Integer.parseInt(seleccion.split(" - ")[0]);
+
+                        // -- Pestaña 1: Llenamos Presupuesto, Tabla APU y Texto automático --
+                        costoBox.setText(logica.obtenerPresupuestoTotal(idProy));
+                        table1.setModel(logica.obtenerModeloTablaAPU(idProy));
+                        textArea1.setText(logica.compilarObservaciones(idProy));
+
+                        // -- Pestaña 2: Llenamos el historial de reportes pasados --
+                        table2.setModel(logica.obtenerModeloHistorialReportes(idProy));
+
+                    } catch (NumberFormatException ex) {
+                        System.err.println("Error al extraer el ID del proyecto: " + ex.getMessage());
+                    }
                 }
             }
         });
