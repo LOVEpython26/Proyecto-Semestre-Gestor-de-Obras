@@ -24,6 +24,7 @@ public class FormularioReportes {
     private JTabbedPane tabbedPane1;
     private JTable table2;
     private LogicaReportes logica ;
+    private ArrayList<Integer> listaIdsProyectos;
 
     public FormularioReportes(int idRol) {
         this.logica = new LogicaReportes();

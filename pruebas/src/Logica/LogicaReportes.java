@@ -116,7 +116,7 @@ public class LogicaReportes {
 
     // 5. Llenar la Tabla del Historial de Reportes (Pestaña 2)
     public DefaultTableModel obtenerModeloHistorialReportes(int idProyecto) {
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Fecha del Reporte", "Resumen Guardado"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Fecha del Reporte", "Resumen Corto"}, 0);
         String sql = "SELECT fecha, resumen FROM reportes WHERE id_proyecto = ? ORDER BY fecha DESC";
 
         try (Connection con = new ConexionBD().getConnection();
@@ -126,9 +126,17 @@ public class LogicaReportes {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
+                String resumenCompleto = rs.getString("resumen");
+                String resumenCorto = resumenCompleto;
+
+                // Si el texto tiene más de 60 caracteres, lo cortamos y le ponemos "..."
+                if (resumenCompleto != null && resumenCompleto.length() > 60) {
+                    resumenCorto = resumenCompleto.substring(0, 60) + "...";
+                }
+
                 modelo.addRow(new Object[]{
                         rs.getDate("fecha"),
-                        rs.getString("resumen")
+                        resumenCorto
                 });
             }
         } catch (SQLException e) {
