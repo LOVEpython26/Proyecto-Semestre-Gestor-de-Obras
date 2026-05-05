@@ -31,6 +31,7 @@ public class PanelIngenierio {
 
                 frameProyectos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameProyectos.pack();
+                frameProyectos.setSize(400,500);
                 frameProyectos.setLocationRelativeTo(null); // Centra la ventana en la pantalla
                 frameProyectos.setVisible(true); // Muestra el nuevo formulario
 

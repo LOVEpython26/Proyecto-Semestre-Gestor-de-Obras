@@ -7,8 +7,9 @@ public class Main {
         JFrame frame = new JFrame("Pest");
         frame.setContentPane(new Pest().panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800,600);
         frame.pack();
+        frame.setSize(700,600);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }

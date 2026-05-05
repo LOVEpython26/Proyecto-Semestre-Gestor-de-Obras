@@ -55,6 +55,7 @@ public class Pest {
                     // Configuración de la nueva ventana [cite: 33]
                     frameDestino.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frameDestino.pack();
+                    frameDestino.setSize(400,500);
                     frameDestino.setLocationRelativeTo(null);
                     frameDestino.setVisible(true);
 

@@ -128,6 +128,7 @@ public class FormularioAvances {
 
                 frameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameMenu.pack();
+                frameMenu.setSize(400,500);
                 frameMenu.setLocationRelativeTo(null); // Centramos la ventana
                 frameMenu.setVisible(true); // Mostramos el menú
 

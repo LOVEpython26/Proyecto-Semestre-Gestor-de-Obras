@@ -114,6 +114,7 @@ public class FormularioRegistro {
                 frameMenu.setContentPane(new Menu(idRol).panelMenu);
                 frameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameMenu.pack();
+                frameMenu.setSize(400,500);
                 frameMenu.setLocationRelativeTo(null); // Lo centra en la pantalla
                 frameMenu.setVisible(true);
 

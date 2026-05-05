@@ -31,6 +31,7 @@ public class FormularioRecursos {
                 frameMenu.setContentPane(new PanelIngenierio(idRol).panelIngenieria);
                 frameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameMenu.pack();
+                frameMenu.setSize(400,500);
                 frameMenu.setLocationRelativeTo(null); // Lo centra en la pantalla
                 frameMenu.setVisible(true);
 

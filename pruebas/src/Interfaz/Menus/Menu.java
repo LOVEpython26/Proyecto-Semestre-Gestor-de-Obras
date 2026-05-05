@@ -2,6 +2,7 @@ package Interfaz.Menus;
 
 import Interfaz.Formularios.FormularioAvances;
 import Interfaz.Formularios.FormularioRegistro;
+import Interfaz.Formularios.FormularioReportes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +30,7 @@ public class Menu {
                 JFrame frameRegistro = new JFrame("Registro de Personal - Sistema DSW");
                 frameRegistro.setContentPane(new FormularioRegistro(idRol).panelFormulario);
                 frameRegistro.pack();
+                frameRegistro.setSize(400,500);
                 frameRegistro.setLocationRelativeTo(null); // Centrar en pantalla
                 frameRegistro.setVisible(true);
 
@@ -57,6 +59,7 @@ public class Menu {
                     frameLogin.setContentPane(new Pest().panelPrincipal);
                     frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frameLogin.pack();
+                    frameLogin.setSize(700,600);
                     frameLogin.setLocationRelativeTo(null); // Centrar en pantalla
                     frameLogin.setVisible(true);
 
@@ -81,6 +84,7 @@ public class Menu {
 
                 frameIngenieria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameIngenieria.pack();
+                frameIngenieria.setSize(400,500);
                 frameIngenieria.setLocationRelativeTo(null); // Esto centra la ventana en la pantalla
                 frameIngenieria.setVisible(true); // ¡Mostramos el panel!
 
@@ -105,6 +109,7 @@ public class Menu {
 
                 frameIngenieria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameIngenieria.pack();
+                frameIngenieria.setSize(700,500);
                 frameIngenieria.setLocationRelativeTo(null); // Esto centra la ventana en la pantalla
                 frameIngenieria.setVisible(true); // ¡Mostramos el panel!
 
@@ -120,6 +125,25 @@ public class Menu {
         sistemaYReportesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // 1. Creamos y configuramos la nueva ventana del Módulo de Ingeniería
+                JFrame frameIngenieria = new JFrame("Módulo de Ingeniería y Costos - DSW");
+
+                // OJO: Si tu clase se llama PanelIngeniero, cámbialo aquí.
+                // También le pasamos el idRol (si tu constructor lo pide) para mantener la sesión.
+                frameIngenieria.setContentPane(new FormularioReportes(idRol).panelReportes);
+
+                frameIngenieria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frameIngenieria.pack();
+                frameIngenieria.setSize(400,500);
+                frameIngenieria.setLocationRelativeTo(null); // Esto centra la ventana en la pantalla
+                frameIngenieria.setVisible(true); // ¡Mostramos el panel!
+
+                // 2. Cerramos la ventana del Menú actual para limpiar la memoria (RNF04)
+                // Asegúrate de que "panelMenu" sea el nombre del JPanel principal de esta ventana
+                Window ventanaActual = SwingUtilities.getWindowAncestor(panelMenu);
+                if (ventanaActual != null) {
+                    ventanaActual.dispose();
+                }
 
             }
         });

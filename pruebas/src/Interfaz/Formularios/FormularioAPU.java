@@ -116,6 +116,7 @@ public class FormularioAPU {
 
                 frameIngenieria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameIngenieria.pack();
+                frameIngenieria.setSize(400,500);
                 frameIngenieria.setLocationRelativeTo(null); // Centra la ventana
                 frameIngenieria.setVisible(true);
 
