@@ -56,15 +56,15 @@ public class LogicaReportes {
 
     // 3. Llenar la Tabla APU (Ítems Utilizados) cruzando apu, items y recursos
     public DefaultTableModel obtenerModeloTablaAPU(int idProyecto) {
-        // Nombres de las columnas para table1
         DefaultTableModel modelo = new DefaultTableModel(new String[]{"Ítem", "Recurso", "Cantidad", "Costo Unitario"}, 0);
 
-        // Consulta JOIN exacta a tu script SQL
+        // La consulta SQL perfecta, ordenada por ID para que los recursos del mismo ítem no se mezclen
         String sql = "SELECT i.descripcion AS item, r.nombre AS recurso, a.cantidad, a.costo_unitario " +
                 "FROM apu a " +
                 "JOIN items i ON a.id_item = i.id_item " +
                 "JOIN recursos r ON a.id_recurso = r.id_recurso " +
-                "WHERE i.id_proyecto = ?";
+                "WHERE i.id_proyecto = ? " +
+                "ORDER BY i.id_item";
 
         try (Connection con = new ConexionBD().getConnection();
              PreparedStatement pst = con.prepareStatement(sql)) {
@@ -73,6 +73,7 @@ public class LogicaReportes {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
+                // Aquí volvemos a imprimir TODOS los datos completos en cada fila, sin dejar nada "vaciado"
                 modelo.addRow(new Object[]{
                         rs.getString("item"),
                         rs.getString("recurso"),

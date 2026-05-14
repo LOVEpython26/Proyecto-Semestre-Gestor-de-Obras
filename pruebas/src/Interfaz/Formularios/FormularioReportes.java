@@ -28,6 +28,8 @@ public class FormularioReportes {
 
     public FormularioReportes(int idRol) {
         this.logica = new LogicaReportes();
+        this.table1.setEnabled(false);
+        this.table2.setEnabled(false);
 
         // 1. Agregar el texto por defecto ANTES de cargar los proyectos de la BD
         proyectosBox.addItem("Seleccione un proyecto...");
