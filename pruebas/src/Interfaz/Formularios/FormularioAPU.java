@@ -87,7 +87,10 @@ public class FormularioAPU {
                 } else {
                     cantidadBox.setText("0");
                 }
+
+                
             }
+
         });
 
         // Evento 3: Al seleccionar un Recurso -> Mostrar su Costo Base
