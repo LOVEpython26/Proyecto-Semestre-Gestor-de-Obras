@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\SergioCardenas\OneDrive\Documentos\GitHub\Proyecto-Semestre-Gestor-de-Obras\out\artifacts\B192_SergioCardenas_1112046677_ProyFinalPOO_jar\B192_SergioCardenas_1112046677_ProyFinalPOO.jar</jar>
+  <outfile>C:\Users\SergioCardenas\OneDrive\Documentos\GitHub\Proyecto-Semestre-Gestor-de-Obras\Gestor_de_Obras.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\SergioCardenas\Downloads\Captura-de-pantalla-2026-06-07-173347.ico</icon>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>25.0.2</minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>
